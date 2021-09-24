@@ -13,6 +13,7 @@ credentials*.json
 .idea/
 __pycache__/
 *.iml
+.project
 
 # Kitchen files
 **/inspec.lock
