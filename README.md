@@ -47,7 +47,7 @@ The `terraform.tfvars` in each fixture directory is already symlinked to this on
 From the root of the module, run
 
 ```
-make test_integration_docker
+make docker_test_integration
 ```
 
 to build the container and run through all the test suites. Note that this will take some time (> 20 minutes).
@@ -58,19 +58,19 @@ You can also run each test case individually and interactively in the Docker con
 make docker_run
 ```
 
-The root directory of the module will be mounted to `/cft/workdir` in the container. For example, to run the `mig-autoscaler` test suite:
+The root directory of the module will be mounted to `/workspace` in the container. For example, to run the `mig-autoscaler` test suite:
 
 ```
-bundle exec kitchen test mig-autosaler
+kitchen test mig-autosaler
 ```
 
 or
 
 ```
-bundle exec kitchen create mig-autoscaler
-bundle exec kitchen converge mig-autoscaler
-bundle exec kitchen verify mig-autoscaler
-bundle exec kitchen destroy mig-autoscaler
+kitchen create mig-autoscaler
+kitchen converge mig-autoscaler
+kitchen verify mig-autoscaler
+kitchen destroy mig-autoscaler
 ```
 
 ## Permissions
