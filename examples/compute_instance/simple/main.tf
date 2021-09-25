@@ -33,7 +33,7 @@ module "compute_instance" {
   zone              = var.zone
   subnetwork        = var.subnetwork
   num_instances     = var.num_instances
-  hostname          = "instance-simple"
+  hostname          = var.hostname
   instance_template = module.instance_template.self_link
   access_config = [{
     nat_ip       = var.nat_ip

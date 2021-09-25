@@ -37,6 +37,12 @@ variable "subnetwork" {
   description = "The subnetwork selflink to host the compute instances in"
 }
 
+variable "hostname" {
+  description = "Hostname of instances"
+  type        = string
+  default     = "instance-simple"
+}
+
 variable "num_instances" {
   description = "Number of instances to create"
 }

@@ -19,7 +19,7 @@ expected_instances = 2
 control "Compute Instances" do
   title "Simple Configuration With Zone Specified"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~instance-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~instance-simple-zone*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -39,7 +39,7 @@ control "Compute Instances" do
 
     describe "instance 001" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-001" }
+        data.find { |i| i['name'] == "instance-simple-zone-001" }
       end
 
       it "should be in zone us-central1-b}" do
@@ -49,7 +49,7 @@ control "Compute Instances" do
 
     describe "instance 002" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-002" }
+        data.find { |i| i['name'] == "instance-simple-zone-002" }
       end
 
       it "should be in zone us-central1-b}" do
