@@ -249,3 +249,23 @@ variable "gpu" {
   })
   default = null
 }
+
+##################
+# reservation affinity
+##################
+variable "reservation_affinity" {
+  description = <<EOF
+(Optional) Specifies the reservations that this instance can consume from.
+type: The type of reservation from which this instance can consume resources.
+key: Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify compute.googleapis.com/reservation-name as the key and specify the name of your reservation as the only value.
+values: Corresponds to the label values of a reservation resource.
+EOF
+  type = object({
+    type = string
+    specific_reservation = object({
+      key    = string
+      values = list(string)
+    })
+  })
+  default = null
+}
