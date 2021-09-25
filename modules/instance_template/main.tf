@@ -43,8 +43,9 @@ locals {
   shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
 
-  gpu_enabled            = var.gpu != null
-  alias_ip_range_enabled = var.alias_ip_range != null
+  gpu_enabled                  = var.gpu != null
+  alias_ip_range_enabled       = var.alias_ip_range != null
+  reservation_affinity_enabled = var.reservation_affinity != null
   on_host_maintenance = (
     var.preemptible || var.enable_confidential_vm || local.gpu_enabled
     ? "TERMINATE"
@@ -166,6 +167,20 @@ resource "google_compute_instance_template" "tpl" {
     content {
       type  = guest_accelerator.value.type
       count = guest_accelerator.value.count
+    }
+  }
+
+  dynamic "reservation_affinity" {
+    for_each = local.reservation_affinity_enabled ? [var.reservation_affinity] : []
+    content {
+      type = reservation_affinity.value.type
+      dynamic "specific_reservation" {
+        for_each = [reservation_affinity.value.specific_reservation]
+        content {
+          key    = specific_reservation.value.key
+          values = specific_reservation.value.values
+        }
+      }
     }
   }
 }
