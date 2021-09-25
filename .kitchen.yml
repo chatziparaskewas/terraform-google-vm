@@ -45,6 +45,11 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/instance_template/alias_ip_range
+  - name: it_reservation_affinity
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/instance_template/reservation_affinity
   - name: preemptible_and_regular_instance_templates_simple
     driver:
       name: terraform
@@ -65,6 +70,11 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/compute_instance/disk_snapshot
+  - name: instance_reservation_affinity
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/compute_instance/reservation_affinity
   - name: mig_simple
     driver:
       name: terraform
