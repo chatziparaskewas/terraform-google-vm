@@ -19,7 +19,7 @@ expected_instances = 4
 control "Compute Instances" do
   title "Simple Configuration"
 
-  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~instance-simple*'") do
+  describe command("gcloud --project=#{project_id} compute instances list --format=json --filter='name~instance-simple1-*'") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
 
@@ -39,7 +39,7 @@ control "Compute Instances" do
 
     describe "instance 001" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-001" }
+        data.find { |i| i['name'] == "instance-simple1-001" }
       end
 
       it "should be in zone us-central1-a}" do
@@ -49,7 +49,7 @@ control "Compute Instances" do
 
     describe "instance 002" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-002" }
+        data.find { |i| i['name'] == "instance-simple1-002" }
       end
 
       it "should be in zone us-central1-b}" do
@@ -59,7 +59,7 @@ control "Compute Instances" do
 
     describe "instance 003" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-003" }
+        data.find { |i| i['name'] == "instance-simple1-003" }
       end
 
       it "should be in zone us-central1-c}" do
@@ -69,7 +69,7 @@ control "Compute Instances" do
 
     describe "instance 004" do
       let(:instance) do
-        data.find { |i| i['name'] == "instance-simple-004" }
+        data.find { |i| i['name'] == "instance-simple1-004" }
       end
 
       it "should be in zone us-central1-f}" do

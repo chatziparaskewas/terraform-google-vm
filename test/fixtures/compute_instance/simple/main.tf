@@ -20,6 +20,7 @@ module "instance_simple" {
   project_id      = var.project_id
   region          = "us-central1"
   subnetwork      = google_compute_subnetwork.main.self_link
+  hostname        = "instance-simple1"
   num_instances   = 4
   service_account = var.service_account
 }

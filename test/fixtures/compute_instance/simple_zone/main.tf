@@ -21,6 +21,7 @@ module "instance_simple" {
   region          = "us-central1"
   zone            = "us-central1-b"
   subnetwork      = google_compute_subnetwork.main.self_link
+  hostname        = "instance-simple-zone"
   num_instances   = 2
   service_account = var.service_account
 }

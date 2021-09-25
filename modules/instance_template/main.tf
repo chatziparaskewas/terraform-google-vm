@@ -43,6 +43,7 @@ locals {
   shielded_vm_configs          = var.enable_shielded_vm ? [true] : []
   confidential_instance_config = var.enable_confidential_vm ? [true] : []
 
+  service_account_set    = var.service_account != null
   gpu_enabled            = var.gpu != null
   alias_ip_range_enabled = var.alias_ip_range != null
   reservation_affinity_enabled = var.reservation_affinity != null
@@ -93,7 +94,7 @@ resource "google_compute_instance_template" "tpl" {
   }
 
   dynamic "service_account" {
-    for_each = [var.service_account]
+    for_each = local.service_account_set ? [var.service_account] : []
     content {
       email  = lookup(service_account.value, "email", null)
       scopes = lookup(service_account.value, "scopes", null)
